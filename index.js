@@ -57,10 +57,14 @@ app.put("/todos/:id", (req, res) => {
       id: todoParamId,
       ...newTodoData,
     };
+    res.json({
+      message: "Todo Updated Successfully.",
+    });
+  } else {
+    res.status(400).json({
+      message: "Todo id doesn't exists",
+    });
   }
-  res.json({
-    message: "Todo Updated Successfully.",
-  });
 });
 
 //DELETE

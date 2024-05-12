@@ -42,7 +42,7 @@ app.post("/todos", (req, res) => {
   const newTodo = req.body;
   todos.push(newTodo);
 
-  res.json({
+  res.status(201).json({
     message: "new todo Added",
   });
 });

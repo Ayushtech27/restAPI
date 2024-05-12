@@ -3,8 +3,11 @@ import bodyParser from "body-parser";
 
 const app = express(); // Making an instance of express
 const PORT = 5111;
-app.use(bodyParser.json());
 
+//Using body-parser as a middleware.
+app.use(bodyParser.json()); //Express allows to use body-parser to use in the central place it self and for every request it will do the parsing work.
+
+// Any kind of request made on '/'.
 app.all("/", (req, res) => {
   console.log("Request > ", req);
   console.log("Response > ", res);
@@ -63,9 +66,9 @@ app.put("/todos/:id", (req, res) => {
 //DELETE
 app.delete("/todos/:id", (req, res) => {
   const todoParamId = req.params.id;
-  const todoIndex = todos.findIndex((td) => td.id === todoParamId);
+  const todoIndex = todos?.findIndex((td) => td?.id === todoParamId);
   if (todoIndex !== -1) {
-    todos.splice(todoIndex, 1);
+    todos.splice(todoIndex, 1); // (start index, number of items)
   }
   res.json({
     message: "Todo Deleted Successfully.",
